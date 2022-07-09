@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./components/card/Card";
 import Input from "./components/input/Input";
 import TodoItem from "./components/todo-item/TodoItem";
@@ -34,7 +34,34 @@ const TODOS_MOCK = [
   },
 ];
 
+// {props.taskList.map((item, index) => (
+//   <TaskCard
+//     key={index}
+//     id={item.id}
+//     status={item.status}
+//     name={item.name}
+//     dueDate={item.dueDate}
+//   />
+// ))}
+
 function App() {
+  // functions
+  const titleInput = (e) => {
+    setTitleInputState(e.target.value);
+    console.log(`title: ${e.target.value}`);
+  };
+
+  const descInput = (e) => {
+    setDescInputState(e.target.value);
+    console.log(`desc: ${e.target.value}`);
+  };
+
+  const submitForm = () => {};
+
+  //states
+  const [titleInputState, setTitleInputState] = useState("");
+  const [descInputState, setDescInputState] = useState("");
+
   return (
     <div className="App">
       <div className="app-container">
@@ -43,9 +70,9 @@ function App() {
           */}
         <Card>
           <h2>Create Todo</h2>
-          <form>
-            <Input onChange={() => {}} placeholder="Title" type="text" />
-            <TextArea onChange={() => {}} placeholder="Description" />
+          <form onSubmit={""}>
+            <Input onChange={titleInput} placeholder="Title" type="text" />
+            <TextArea onChange={descInput} placeholder="Description" />
             <Button type="submit">Create</Button>
           </form>
         </Card>
@@ -58,6 +85,7 @@ function App() {
           <Button onClick={() => console.log("Open Modal")}>Add +</Button>
           <div className="list-container">
             <TodoItem completed={false} />
+
             <TodoItem completed={false} />
           </div>
 
